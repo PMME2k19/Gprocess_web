@@ -1,0 +1,30 @@
+<div class="card min-h-min">
+  <ng-container *ngIf="despachos.length">
+      <table class="border-t-0">
+          <thead>
+              <th>N/Ref.ª</th>
+              <th>Tipo Tratamento</th>
+              <th>Natureza</th>
+              <th>Forma e Acusação</th>
+              <th>Data da Expedição</th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of despachos">
+                  <td>{{ item.expedicao.nRef ?? '----' }}</td>
+                  <td>{{ item.tipoTratamentoDescription }}</td>
+                  <td>{{ item.expedicao.prioridadeDescription }}</td>
+                  <td>{{ item.expedicao.formaAcusacaoDescription }}</td>
+                  <td>{{ item.expedicao.data | dateCreatePipe }}</td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="pagination px-5 py-5">
+        <app-pagination
+          [paginationData]="paginationData"
+          (pageNumberEvent)="goToPageNumber($event)" >
+        </app-pagination>
+      </div>
+  </ng-container>
+
+  <app-content-message *ngIf="!(despachos.length)" [option]="1" class="py-12 px-5"></app-content-message>
+</div>

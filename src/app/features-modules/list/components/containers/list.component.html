@@ -1,0 +1,248 @@
+<div class="w-full pl-7 pr-7 pb-5 pt-2">
+    <div class="flex justify-between items-center intern-header">
+        <div class="">
+            <h1 class="intern-header-title">Listagem dos Processos</h1>
+            <span class="intern-header-description">Visualize todos os processos criados.</span>
+        </div>
+        <div class="mr-2">
+            <div class="mt-1 relative z-10">
+
+                <button (click)='toggleProcessesType()' type="button" class="mb-2 z-10 relative w-full bg-white border border-gray-400 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-300 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                    <span class="flex items-center">
+
+                        <svg *ngIf="isPublic" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        </svg>
+
+                        <svg *ngIf="!isPublic" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#00395A">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="ml-3 block truncate"> {{ selectedProcess }} </span>
+                    </span>
+                    <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    <!-- Heroicon name: solid/selector -->
+                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    </span>
+                </button>
+
+                <!--
+                    Select popover, show/hide based on select state.
+
+                    Entering: ""
+                    From: ""
+                    To: ""
+                    Leaving: "transition ease-in duration-100"
+                    From: "opacity-100"
+                    To: "opacity-0"
+                -->
+
+            <ul [style.display]="displayProcessesType" class="z-10 absolute t-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                <!--
+                Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+                Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                -->
+                <li (click)='selectPublicProcesses()' class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+                    <div class="flex items-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        </svg>
+
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span class="font-normal ml-3 block truncate"> Processos Públicos </span>
+                    </div>
+
+                <!--
+                    Checkmark, only display for selected option.
+
+                    Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                -->
+                    <span *ngIf="isPublic" class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </li>
+
+                <!-- More items... -->
+
+                <li (click)='selectPrivateProcesses()' class="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+                    <div class="flex items-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="#00395A">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span class="font-normal ml-3 block truncate"> Processos Restritos </span>
+                    </div>
+
+                <!--
+                    Checkmark, only display for selected option.
+
+                    Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                -->
+                    <span *ngIf="!isPublic" class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+    <div *ngIf="!(isLoadingProcesses$ | async); else elseBlockResume" class="flex justify-between items-center mt-4 mb-6">
+        <div class="flex flex-col justify-around items-start h-[120px] resume-box">
+            <div class="rounded-[10px] bg-[#d9e5f4] p-1 px-[10px] mb-1">
+                <i class="icon-processos-registados p-0 text-xl"></i>
+            </div>
+            <h3 class="text-[11px] text-left font-normal">
+                {{ resumeValue[0].descricao }}
+            </h3>
+            <span class="text-xl text-left font-medium">
+                {{ resumeValue[0].valor }}
+            </span>
+
+            <img src="../../../../../assets/imgs/img-resume.svg" alt="IMG Resume" class="absolute bottom-1 right-1">
+        </div>
+
+        <div class="flex flex-col justify-around items-start h-[120px] resume-box ml-5">
+            <div class="rounded-[10px] bg-[#deefe6] p-1 px-[10px] mb-1">
+                <i class="icon-processos-despachados p-0 text-xl"></i>
+            </div>
+            <h3 class="text-[11px] text-left font-normal">
+                {{ resumeValue[1].descricao }}
+            </h3>
+            <span class="text-xl text-left font-medium">
+                {{ resumeValue[1].valor }}
+            </span>
+
+            <img src="../../../../../assets/imgs/img-resume.svg" alt="IMG Resume" class="absolute bottom-1 right-1">
+        </div>
+
+        <div class="flex flex-col justify-around items-start h-[120px] resume-box ml-5">
+            <div class="rounded-[10px] bg-[#ffeed4] p-1 px-[10px] mb-1">
+                <i class="icon-processos-analise p-0 text-xl"></i>
+            </div>
+            <h3 class="text-[11px] text-left font-normal">
+                {{ resumeValue[2].descricao }}
+            </h3>
+            <span class="text-xl text-left font-medium">
+                {{ resumeValue[2].valor }}
+            </span>
+
+            <img src="../../../../../assets/imgs/img-resume.svg" alt="IMG Resume" class="absolute bottom-1 right-1">
+        </div>
+
+        <div class="flex flex-col justify-around items-start h-[120px] resume-box ml-5">
+            <div class="rounded-[10px] bg-[#dbdbdb] p-1 px-[10px] mb-1">
+                <i class="icon-extrair-relatorio p-0 text-xl"></i>
+            </div>
+            <h3 class="text-[11px] text-left font-normal">
+                {{ resumeValue[3].descricao }}
+            </h3>
+            <span class="text-xl text-left font-medium">
+                {{ resumeValue[3].valor }}
+            </span>
+
+            <img src="../../../../../assets/imgs/img-resume.svg" alt="IMG Resume" class="absolute bottom-1 right-1">
+        </div>
+    </div>
+
+    <ng-template #elseBlockResume>
+        <div class="flex justify-around items-center mt-4 mb-6">
+            <div class="div-quadrado-loading"></div>
+            <div class="div-quadrado-loading"></div>
+            <div class="div-quadrado-loading"></div>
+            <div class="div-quadrado-loading"></div>
+        </div>
+    </ng-template>
+
+    <div class="card">
+        <div class="flex justify-start px-4 py-4 filters">
+            <div class="w-[13rem] mr-3 flex items-start">
+                <app-search-input [formControl]="termSearch" placeHolder="Termo de Pesquisa" title="Pesquise pelo: Número do Doc | Proveniência" [isSmallSize]="true"></app-search-input>
+            </div>
+            <div class="mr-3 div-type w-13 flex justify-center items-start">
+                <app-select-input [formControl]="typeSearch" [isLoading]="isLoadingTypes$ | async" (reload)="getProcessesTypes()" placeHolder="Tipo de Doc" [isSmallSize]="true" [list]="listType" class="w-13 style-first-item"></app-select-input>
+            </div>
+            <div class="mr-3 items-start">
+                <app-select-input [formControl]="prioritySearch" placeHolder="Prioridade" [isSmallSize]="true" [list]="listPriorities" class="w-[140px]"></app-select-input>
+            </div>
+            <div class="mr-3 items-start">
+                <app-select-input [formControl]="actualStateSearch" placeHolder="Estado Actual" [isSmallSize]="true" [list]="listStates" class="w-36"></app-select-input>
+            </div>
+            <div class="items-start">
+                <input type="date" [formControl]="dateSearch" class="block w-48 pl-5 pr-5 bg-gray-100 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 is-small-size"/>
+            </div>
+        </div>
+        <table *ngIf="!(isEmpty$ | async); else elseBlockProcessTable">
+            <thead>
+                <tr>
+                    <th scope="col">Número</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Proveniência</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Prioridade</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acção</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="!(isLoadingProcesses$ | async); else elseBlockProcess">
+                <tr *ngFor="let process of processes$ | async" [title]=" 'Assunto: ' + process.assunto" [class.bg-red-50]="process.isAtrasado">
+                    <td> {{ process.numeroInterno }} </td>
+                    <td> {{ process.tipoProcesso }} </td>
+                    <td> {{ process.proveniencia }} </td>
+                    <td> {{ process.dataRegisto }} </td>
+                    <td class="break-words max-w-[110px]">{{ process.prioridade }}</td>
+                    <td>
+                        <div class="p-1 px-2 uppercase" [ngClass]="process.estadoActual | getClassActualState">
+                            <span>{{ process.estadoActual }}</span>
+                        </div>
+                     </td>
+                    <td class="py-0 text-right">
+                        <div class="flex text-base w-20">
+                            <a class="flex items-center justify-start rounded-lg text-[#2E3361] font-medium text-xs cursor-pointer bg-gray-50 p-1 px-2 border-[1px] border-solid border-gray-300"
+                            [routerLink]="['/detalhe-de-documento/', process.id]">
+                                <span>Detalhe</span>
+                                <i class="p-0 icon-seta-right"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <ng-template #elseBlockProcess>
+                <div class="div-linha-loading"></div>
+                <div class="div-linha-loading"></div>
+                <div class="div-linha-loading"></div>
+                <div class="div-linha-loading"></div>
+            </ng-template>
+
+        </table>
+
+        <ng-template #elseBlockProcessTable>
+            <div class="flex justify-center items-center pt-8 border-solid border-t-[1.5px] border-[#EFEFEF]">
+                <app-content-message></app-content-message>
+            </div>
+        </ng-template>
+
+        <div class="pagination px-5 py-5">
+            <app-pagination
+                *ngIf="!(isLoadingProcesses$ | async) && !(isEmpty$ | async)"
+                [paginationData]="paginationData"
+                (pageNumberEvent)="goToPageNumber($event)" >
+            </app-pagination>
+        </div>
+
+  </div>
+</div>

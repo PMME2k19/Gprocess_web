@@ -1,0 +1,253 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/icones/icons.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.4s;
+}
+
+::-ms-reveal {
+    display: none;
+}
+
+i{
+    padding-right: 10px;
+}
+
+/** REUSING STYLES **/
+
+@layer components {
+    .card {
+        @apply bg-white rounded-lg border-solid border-[1.5px] border-[#e6e7ec];
+        min-height: 200px;
+        box-shadow: 0px 3px 26px 0 rgba(0, 0, 0, 0.02);
+    }
+
+    .card-header{
+        @apply py-3 px-4 font-medium border-solid border-b-[1.5px] border-[#efefef];
+    }
+
+    .card-main{
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .intern-header{
+        @apply py-3 border-solid border-b-[1.5px] border-[#efefef];
+    }
+
+    .intern-header-title{
+        @apply text-xl text-gray-800 font-semibold;
+    }
+
+    .intern-header-description{
+        @apply text-[#757575] text-sm;
+    }
+
+    table{
+        @apply w-full border-solid border-y-[1.5px] border-[#EFEFEF] text-left;
+    }
+
+    table thead{
+        @apply text-[0.89rem] text-gray-700;
+    }
+
+    table thead th{
+        @apply px-5 py-4 font-semibold;
+    }
+
+    table tbody{
+        @apply text-sm text-gray-600;
+    }
+
+    table tbody tr{
+        @apply border-t-[1.5px] border-[#EFEFEF];
+    }
+
+    table tbody td{
+        @apply px-5 py-4;
+    }
+
+    .modal-content{
+        @apply pt-4 pb-5 px-5 bg-[#FCFCFC] border-solid border-y-[1.5px] border-[#E6E7EC];
+    }
+
+    .modal-footer{
+        @apply flex justify-end bg-white rounded-b-lg py-4 px-5;
+    }
+
+    .user-baget{
+        @apply flex items-center max-w-[max-content] py-1 px-2 bg-[#F9F9F9] border-[1.4px] border-solid border-[#E3E3E3] rounded-md cursor-pointer font-medium text-accent text-[12.5px];
+    }
+
+    .user-baget img{
+        @apply w-[1.3rem] h-[1.3rem] mr-2 border border-solid border-[#E3E3E3] rounded-[100%];
+    }
+
+    button.primary-button{
+      @apply bg-accent rounded-md py-2 pl-5 pr-5 border border-transparent font-medium text-white hover:bg-[#3E4583] cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent disabled:bg-[#585C7D] disabled:cursor-not-allowed;
+    }
+
+    .secundary-button{
+      @apply bg-btn-secundary rounded-md text-gray-700 py-2 pl-5 pr-5 mr-5 border border-transparent font-medium cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent;
+    }
+
+    .green-button{
+      @apply bg-[#3CA16B] rounded-md py-2 pl-5 pr-5 border border-transparent font-medium text-white hover:bg-[#34b370] cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent disabled:bg-[#5EB184] disabled:cursor-not-allowed;
+    }
+
+    .red-button{
+      @apply bg-[#D9534F] rounded-md py-2 pl-5 pr-5 border border-transparent font-medium text-white hover:bg-[#E33934] cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent disabled:bg-[#DC635F] disabled:cursor-not-allowed;
+    }
+}
+
+/***********/
+
+/** DATE INPUT ICON **/
+input[type="date"]{
+    position: relative;
+    min-width: 180px;
+}
+
+input[type="date"]:before {
+    font-family: 'icomoon';
+    content: "\e914";
+    position: absolute;
+    font-size: 16px;
+    right: 20px;
+    color: #4C4C4C;
+}
+
+input[type="date"].is-small-size:before{
+    font-size: 15px;
+}
+
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+input[type="date"].is-small-size{
+    font-size: 0.8rem;
+}
+
+.disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+/***********/
+
+
+/** NGX-CHARTS **/
+ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
+    font-size: initial;
+    color: var(--text-gray-800);
+    background-color: white;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-top {
+    border-top-color: white;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1280px) {
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .legend-items-container .legend-items .legend-item{
+        margin-right: 18px;
+    }
+
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .total-value{
+        font-size: 34px;
+    }
+
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .total-label{
+        font-size: 22px;
+        margin-top: -8px;
+    }
+
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-color{
+        height: 38px;
+    }
+
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-value{
+        font-size: 22px;
+    }
+
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-label{
+        font-size: 13px;
+        margin-top: -5px;
+    }
+
+    ngx-charts-advanced-pie-chart .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-percent{
+        font-size: 22px;
+    }
+}
+
+/****************List Loader CSS3*********************/
+
+.div-linha-loading, .div-quadrado-loading{
+    background-color: #EAEAEA;
+    border-radius: 8px;
+    margin: 15px 0 15px 0;
+}
+
+.div-linha-loading{
+    height: 50px;
+    width: 525%;
+}
+
+.div-quadrado-loading{
+    height: 250px;
+    width: 250px;
+}
+
+.div-linha-loading, .div-quadrado-loading{
+    position: relative;
+}
+
+.div-linha-loading{
+    animation: esquerdaDireita0-20TonsDeCinza 1.1s infinite;
+    animation-direction: alternate;
+}
+
+.div-img-horizontal-loading{
+    animation: direitaEsquerda0-7TonsDeCinza 1s infinite;
+    animation-direction: alternate;
+}
+
+.div-quadrado-loading{
+    animation: esquerdaDireita0-7TonsDeCinza 1s infinite;
+    animation-direction: alternate;
+}
+
+@keyframes cimaBaixo0-40 {
+    from {bottom: 0px;}
+    to {bottom: 40px;}
+}
+
+@keyframes cimaBaixo0-40TonsDeCinza {
+    from {bottom: 0px; background-color: #FDFDFD;}
+    to {bottom: 40px; background-color: #EAEAEA;}
+}
+
+@keyframes esquerdaDireita0-20TonsDeCinza {
+    from {left: 0px; background-color: #FEFEFE;}
+    to {left: 20px; background-color: #EAEAEA;}
+}
+
+@keyframes esquerdaDireita0-7TonsDeCinza {
+    from {left: 0px; background-color: #FEFEFE;}
+    to {left: 7px; background-color: #EAEAEA;}
+}
+
+@keyframes direitaEsquerda0-7TonsDeCinza {
+    from {left: 7px; background-color: #FEFEFE;}
+    to {left: 0px; background-color: #EAEAEA;}
+}

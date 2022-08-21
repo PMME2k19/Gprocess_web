@@ -1,0 +1,12 @@
+<div class="accordion w-full">
+    <div class="header flex items-center justify-between pl-5 pr-3 py-3 border-b cursor-pointer" [class.border-b-0]="isLast" (click)="toggleAccordion()">
+        <span class="font-medium text-[0.94rem]">{{titulo}}</span>
+        <a class="flex items-center justify-start rounded-lg text-[#2E3361] font-bold text-xl bg-gray-50 p-1 mr-2 border-[1px] border-solid border-gray-300">
+            <i class="icon-seta-down p-0" [class.active]="isOpen"></i>
+        </a>
+    </div>
+    
+    <div class="bg-[#FCFCFC] border-y border-[#E6E7EC]" [@toggleHeight]="isOpen ? 'show' : 'hide'" [class.mb-2]="isLast && isOpen">
+        <ng-content></ng-content>
+    </div>
+</div>

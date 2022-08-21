@@ -1,0 +1,16 @@
+<div class="grid grid-cols-3 gap-5">
+    <div class="card col-span-3">
+        <div class="card-header">
+            <h2>Tipos de Tratamentos</h2>
+        </div>
+
+        <div #ContainerTipoTratamento class="card-main">
+            <ngx-charts-advanced-pie-chart
+                [view]="[ContainerTipoTratamento.offsetWidth, 300]"
+                [scheme]="tipoTratamentoColors"
+                [results]="tipoTratamento"
+                [percentageFormatting]="percentageFormatting">
+            </ngx-charts-advanced-pie-chart>
+        </div>
+    </div>
+</div>

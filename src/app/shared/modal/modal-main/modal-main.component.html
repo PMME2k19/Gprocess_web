@@ -1,0 +1,13 @@
+<div tabindex="-1" class="flex items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:h-full bg-gray-800/25">
+    <div class="modal bg-white rounded-lg shadow min-w-[20rem]">
+        <div class="header flex items-center justify-between py-4 px-5">
+            <h1 class="font-medium">{{title}}</h1>
+            <i class="icon-close w-6 h-6 text-sm flex items-center justify-center rounded-[2rem] p-0 shadow-[0_0_0.5rem_rgba(0,0,0,0.25)] cursor-pointer transform hover:rotate-90" 
+                (click)="onClose()">
+            </i>
+        </div>
+        <div class="content rounded-b-lg">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

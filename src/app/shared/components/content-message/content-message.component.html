@@ -1,0 +1,5 @@
+<div class="flex flex-col items-center justify-center w-full h-full py-8">
+    <img [src]="ilustracao" alt="message icon" [style.height]="smallSize ? '90px' : ''">
+    <h1 class="mt-3 font-semibold" [class]="smallSize ? 'text-sm' : '' ">{{this.title}}</h1>
+    <p class="text-sm text-center max-w-[260px]" [style.font-size]="smallSize ? '0.8rem' : ''">{{this.message}}</p>
+</div>

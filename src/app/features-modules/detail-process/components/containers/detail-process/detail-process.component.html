@@ -1,0 +1,72 @@
+<ng-container *ngIf="(process$ | async) as process">
+  <div class="w-full pl-7 pr-7 pb-5 pt-2">
+      <div class="intern-header pb-4">
+          <div class="flex items-center mb-5">
+              <a routerLink="/processos" class="flex items-center justify-start rounded-lg text-[#2E3361] font-bold text-xl cursor-pointer bg-gray-50 p-1 px-1 mr-2 border-[1px] border-solid border-gray-300">
+                  <i class="p-0 icon-seta-left"></i>
+              </a>
+              <h1 class="intern-header-title">Detalhe do Documento</h1>
+          </div>
+
+          <ng-container *ngIf="!(isEmpty$ | async)">
+            <app-process-step *ngIf="!(isLoading$ | async); else elseBlockResume" [totalDespacho]="process.solicitacoes.length" [currentStep]="process.estadoActual" [currentDespachoStepDescrption]="process.tTratamentoUltimoDespachoDescription" [IsTratamentoColcuidoUltimoDespacho]="process.isTratamentoColcuidoUltimoDespacho"></app-process-step>
+            <ng-template #elseBlockResume>
+              <div class="flex justify-around items-center">
+                  <div class="div-quadrado-loading"></div>
+                  <div class="div-quadrado-loading"></div>
+                  <div class="div-quadrado-loading"></div>
+                  <div class="div-quadrado-loading"></div>
+              </div>
+            </ng-template>
+          </ng-container>
+      </div>
+
+      <div *ngIf="!(isEmpty$ | async); else elseBlockConteudo" class="card mt-5 mb-7 h-auto overflow-hidden">
+          <ng-container *ngIf="!(isLoading$ | async); else elseContent">
+            <app-accordion titulo="Dados do Documento" [isOpen]="true">
+              <app-accordion-dados-documento [process]="process"></app-accordion-dados-documento>
+            </app-accordion>
+
+            <app-accordion titulo="Documentos Associados">
+                <app-accordion-documentos [arquivos]="process.arquivos"></app-accordion-documentos>
+            </app-accordion>
+
+            <app-accordion titulo="Histórico do Processo">
+                <app-accordion-historico-processo [estados]="process.estados"></app-accordion-historico-processo>
+            </app-accordion>
+
+            <app-accordion titulo="Despachos">
+                <app-accordion-despachos [despachos]="process.despachos"></app-accordion-despachos>
+            </app-accordion>
+
+            <app-accordion titulo="Observações">
+                <app-accordion-observacoes [observacoes]="process.observacoes"></app-accordion-observacoes>
+            </app-accordion>
+
+            <app-accordion titulo="Reuniões" [isLast]="process.nivelAcesso == accessLevel.PUBLICO">
+                <app-accordion-reunioes [reunioes]="process.reunioes"></app-accordion-reunioes>
+            </app-accordion>
+
+            <app-accordion *ngIf="process.nivelAcesso == accessLevel.PRIVADO" titulo="Utilizadores com Acesso" [isLast]="process.nivelAcesso == accessLevel.PRIVADO">
+               <app-accordion-acessos [processoId]="processoId" [users]="process.utilizadoresComAcesso"></app-accordion-acessos>
+            </app-accordion>
+          </ng-container>
+
+          <ng-template #elseContent>
+            <div class="div-linha-loading"></div>
+            <div class="div-linha-loading"></div>
+            <div class="div-linha-loading"></div>
+            <div class="div-linha-loading"></div>
+            <div class="div-linha-loading"></div>
+          </ng-template>
+      </div>
+
+      <ng-template #elseBlockConteudo>
+        <div class="card flex justify-center items-center h-80 p-5 mt-5">
+            <app-content-message [option]="1"></app-content-message>
+        </div>
+      </ng-template>
+  </div>
+
+  <app-footer-option *ngIf="!(isLoading$ | async) && !(isEmpty$ | async)" [processoId]="processoId" [estadoActual]="process.estadoActual" [IsTratamentoColcuidoUltimoDespacho]="process.isTratamentoColcuidoUltimoDespacho"></app-footer-option>
+</ng-container>

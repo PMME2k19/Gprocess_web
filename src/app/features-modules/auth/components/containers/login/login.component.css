@@ -1,0 +1,55 @@
+@media only screen and (max-width: 1280px)  {
+
+    form {
+        width: 60% !important;
+    }
+
+}
+
+@media only screen and (max-height: 650px)  {
+
+    .style {
+        margin: 0;
+    }
+
+    div img {
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    div form h2 {
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        line-height: 1rem;
+    }
+
+    .div-username {
+        margin-top: 0.5rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .div-pass {
+        margin-top: 0.5rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .div-pass input, .div-username input, button {
+        height: 2.8rem !important;
+    }
+
+    button {
+        font-size: 0.85rem;
+    }
+
+    .div-forget-pass {
+        margin-bottom: 0.6rem !important;
+        font-size: 0.65rem;
+        line-height: 0.9rem;
+    }
+
+    .div-forget-pass a {
+        font-size: 0.75rem;
+        line-height: 0.9rem;
+    }
+}
+

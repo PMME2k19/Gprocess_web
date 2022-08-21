@@ -1,0 +1,65 @@
+<div class="grid grid-cols-3 gap-5">
+    <div class="card col-span-3">
+        <div class="card-header">
+            <h2>Tipos de Documentos</h2>
+        </div>
+
+        <div #ContainerTipoDocumento class="card-main">
+            <ngx-charts-advanced-pie-chart
+                [view]="[ContainerTipoDocumento.offsetWidth, 300]"
+                [scheme]="tipoDocumentosColors"
+                [results]="tipoDocumentos"
+                [percentageFormatting]="percentageFormatting">
+            </ngx-charts-advanced-pie-chart>
+        </div>
+    </div>
+
+    <div class="card col-span-2">
+        <div class="card-header">
+            <h2>Estados dos Documentos</h2>
+        </div>
+
+        <div class="flex items-center justify-center px-3 py-6 card-main">
+            <div #ContainerEstado class="w-full h-full">
+                <ngx-charts-bar-vertical
+                    [scheme]="estadoDocumentosColors"
+                    [results]="estadoDocumentos"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [animations]="false"
+                    [legend]="false"
+                    [barPadding]="50">
+                </ngx-charts-bar-vertical> <!--[view]="[ContainerEstado.offsetWidth, ContainerEstado.offsetHeight]"-->
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Outros Estados</h2>
+        </div>
+
+        <div #ContainerOutros class="flex flex-col justify-between py-3 px-4 card-main">
+            <ng-container *ngIf="outrosEstados | graphEmptyPipe; else elseBlock">
+                <ngx-charts-pie-chart
+                    [view]="[ContainerOutros.offsetWidth/1.1, 250]"
+                    [scheme]="outrosEstadoColors"
+                    [results]="outrosEstados"
+                    [legend]="false"
+                    [labels]="false"
+                    [doughnut]="true"
+                    [arcWidth]="0.4">
+                </ngx-charts-pie-chart>
+                <div class="flex flex-col mt-7 mb-4 text-sm legendas">
+                    <div *ngFor="let item of outrosEstados" class="flex items-center font-medium mb-4 uppercase legenda last:mb-0">
+                        {{item.name}} ({{item.value}})
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-template  #elseBlock>
+                <app-content-message class="mt-10" [option]="1"></app-content-message>
+            </ng-template>
+        </div>
+    </div>
+</div>

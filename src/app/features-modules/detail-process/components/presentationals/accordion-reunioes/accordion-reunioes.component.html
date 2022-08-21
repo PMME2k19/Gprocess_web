@@ -1,0 +1,38 @@
+<div class="card min-h-min">
+  <ng-container *ngIf="reunioes.length">
+      <table class="border-t-0">
+          <thead>
+              <th>Data</th>
+              <th>Descrição</th>
+              <th>Participantes</th>
+              <th *ngIf="false"></th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of reunioes">
+                  <td>{{ item.dataReuniao | dateCreatePipe }}</td>
+                  <td [title]="item.descricao">{{ item.descricao | truncate: 35 }}</td>
+                  <td>
+                      <div class="grid grid-cols-17 gap-3">
+                          <div *ngFor="let user of item.participantes" class="user-baget">
+                              <img src="assets/imgs/user-img.svg" alt="user image">
+                              <span>{{user}}</span>
+                          </div>
+                      </div>
+                  </td>
+                  <td *ngIf="false">
+                      <a class="flex items-center justify-center text-accent bg-[#F9F9F9] w-8 h-8 border-[1.5px] border-solid border-[#E3E3E3] rounded-lg cursor-pointer">
+                          <i class="p-0 icon-editar"></i>
+                      </a>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="pagination px-5 py-5">
+        <app-pagination
+          [paginationData]="paginationData"
+          (pageNumberEvent)="goToPageNumber($event)">
+        </app-pagination>
+      </div>
+  </ng-container>
+  <app-content-message *ngIf="!(reunioes.length)" [option]="1" class="py-12 px-5"></app-content-message>
+</div>

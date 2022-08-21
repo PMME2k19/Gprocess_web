@@ -1,0 +1,30 @@
+<div class="grid grid-cols-3 gap-x-6 gap-y-5">
+  <div>
+      <label for="data-entrada" class="block pb-2 text-sm font-medium">Data de Entrada</label>
+      <input id="data-entrada" type="date" [value]="process.dataEntrega | dateConvertPipe" [disabled]="true" class="block w-full pl-5 pr-5 bg-gray-100 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed"/>
+  </div>
+  <div>
+      <label for="tipo-documento" class="block pb-2 text-sm font-medium">Tipo de Documento</label>
+      <app-select-input id="tipo-documento" class="cursor-not-allowed" [placeHolder]="process.tipoProcesso ? process.tipoProcesso.nome : ''" [disabled]="true"></app-select-input>
+  </div>
+  <div>
+      <label for="numero-documento" class="block pb-2 text-sm font-medium">Número do Documento</label>
+      <input id="numero-documento" type="text" placeholder="Número Do Documento" [value]="process.numeroProcesso" [disabled]="true" class="w-full px-5 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed">
+  </div>
+  <div>
+      <label for="data-documento" class="block pb-2 text-sm font-medium">Data do Documento</label>
+      <input id="data-documento" type="date" [value]="process.dataEmissaoProcesso | dateConvertPipe" [disabled]="true" class="block w-full pl-5 pr-5 bg-gray-100 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed"/>
+  </div>
+  <div>
+      <label for="proveniencia" class="block pb-2 text-sm font-medium">Proveniência</label>
+      <input id="proveniencia" type="text" placeholder="Proveniência" [value]="process.proveniencia" [disabled]="true" class="w-full px-5 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed">
+  </div>
+  <div>
+      <label for="protocolo" class="block pb-2 text-sm font-medium">Protocolo</label>
+      <input id="protocolo"  type="text" placeholder="Responsável" [value]="process.protocolo.primeiroNome + ' ' + process.protocolo.ultimoNome" [disabled]="true" class="w-full px-5 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed">
+  </div>
+  <div class="col-span-3">
+      <label for="assunto" class="block pb-2 text-sm font-medium">Assunto</label>
+      <textarea id="assunto" placeholder="Assunto do documento" [value]="process.assunto" [disabled]="true" class="block w-full min-h-[10rem] px-5 py-3 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm disabled:opacity-70 disabled:cursor-not-allowed"></textarea>
+  </div>
+</div>

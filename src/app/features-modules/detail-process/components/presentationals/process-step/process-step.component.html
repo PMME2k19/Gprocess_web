@@ -1,0 +1,12 @@
+<div class="grid grid-cols-5 gap-5">
+    <div *ngFor="let item of stepList; let i = index" class="flex flex-col" [style.opacity]="item.estado <= getValidCurrentStep() ? '1' : '0.5'">
+        <div class="flex items-center justify-between">
+            <div class="flex flex-col">
+                <h2 class="text-[0.83rem] font-semibold leading-[1rem]">{{ (i+1) + '. ' +item.estadoDescription}}</h2>
+                <span class="text-[0.67rem] text-[#757575] mb-1">{{getDescription(item.estado)}}</span>
+            </div>
+            <span *ngIf="(item.estado == 1 && totalDespacho > 1)" class="w-[2.2em] leading-[1.3em] p-1 text-[0.6em] text-white font-medium text-center rounded-[100%]" [style.background-color]="getCurrentColor(item.estado)">{{totalDespacho}}º</span>
+        </div>
+        <div class="progress w-full bg-gray-200 rounded-full h-[0.3rem]" [style.background-color]="getCurrentColor(item.estado)"></div>
+    </div>
+</div>

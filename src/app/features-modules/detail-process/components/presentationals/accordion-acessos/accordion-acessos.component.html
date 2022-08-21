@@ -1,0 +1,58 @@
+<div class="card min-h-min">
+    <ng-container>
+        <div class="card-header flex items-center justify-between">
+            <h2></h2>
+            <a class="text-accent text-sm cursor-pointer" (click)="showAddUserModal = true">
+                <i class="icon-plus"></i>
+                <span>Adicionar Acesso</span>
+            </a>
+        </div>
+        <div *ngIf="users.length" class="card-main h-auto">
+            <table class="border-t-0">
+                <thead>
+                    <th>Utilizador</th>
+                   <!-- <th>Tipo de Utilizador</th> -->
+                    <th>Data de Inclusão</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of users">
+                        <td>
+                            <div class="user-baget">
+                                <img src="assets/imgs/user-img.svg" alt="user image">
+                                <span>{{item.nome}}</span>
+                            </div>
+                        </td>
+                        <!-- <td>Administrador</td> -->
+                        <td>{{ item.dataAcesso | dateCreatePipe }}</td>
+                        <td class="py-0">
+                            <div class="flex justify-center text-base">
+                                <a class="flex items-center justify-center text-[#D9534F] bg-[#F9F9F9] w-8 h-8 border-[1.5px] border-solid border-[#E3E3E3] rounded-lg cursor-pointer"
+                                (click)="deleteUser(item)">
+                                    <i class="p-0 icon-apagar font-semibold text-sm"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination px-5 py-5">
+                <app-pagination
+                    [paginationData]="paginationData"
+                    (pageNumberEvent)="goToPageNumber($event)" >
+                </app-pagination>
+            </div>
+        </div>
+    </ng-container>
+  
+    <app-content-message *ngIf="!(users.length)" [option]="1" class="py-12 px-5"></app-content-message>
+</div>
+
+<app-modal-main *ngIf="showAddUserModal" [title]="'Adicionar Acesso'" (close)="closeModal()">
+    <app-add-user-acess [processoId]="processoId"></app-add-user-acess>
+</app-modal-main>
+
+<app-modal-main *ngIf="showDeleteUserModal" [title]="'Remover Acesso'" (close)="closeModal()">
+    <app-remove-user [processAcess]="processAcess"></app-remove-user>
+</app-modal-main>
+  

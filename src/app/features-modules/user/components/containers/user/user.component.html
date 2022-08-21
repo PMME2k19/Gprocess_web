@@ -1,0 +1,107 @@
+<div class="w-full pl-7 pr-7 pb-5 pt-2">
+    <div class="intern-header">
+        <h1 class="intern-header-title">Gerir Utilizador</h1>
+        <span class="intern-header-description">Adicione ou efetue alterações em um utilizador.</span>
+    </div>
+
+    <div class="flex mt-5 mb-3">
+        <div class="mb-4 mr-5">
+            <button type="button" (click)="showCreateUserModal = true" class="primary-button w-full flex items-center justify-center" style="height: 2.5rem;">
+                <i class="icon-add-user"></i>
+                Adicionar Utilizador
+            </button>
+        </div>
+        <div class="mb-4 mr-5">
+            <button type="button" class="primary-button w-full flex items-center justify-center" style="height: 2.5rem;"
+            routerLink="/utilizadores/reciclagem">
+                <i class="icon-reciclagem"></i>
+                Reciclagem
+            </button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="flex px-5 py-4 filters">
+            <div class="w-[20rem] mr-5">
+                <app-search-input placeHolder="Pesquisar Nome, E-mail e Contacto…" [formControl]="search" [isSmallSize]="true"></app-search-input>
+            </div>
+            <div class="mr-5">
+                <app-select-input placeHolder="Tipo de Utilizador" [list]="listUsersTypes" [formControl]="tipoUtilizadorSearch" [isSmallSize]="true"></app-select-input>
+            </div>
+        </div>
+        <table *ngIf="!(isEmpty$ | async); else elseBlockTable">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Tipo de Utilizador</th>
+                    <th scope="col">Contacto</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="!(isLoading$ | async); else elseBlockProcess">
+                <tr *ngFor="let user of (users$ | async)">
+                    <td>{{user.primeiroNome + ' ' + user.ultimoNome}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.perfil}}</td>
+                    <td>{{user.contactoTelefonico}}</td>
+                    <td class="py-0">
+                        <div class="flex text-base">
+                            <a class="flex items-center justify-center text-accent bg-[#F9F9F9] w-8 h-8 border-[1.5px] border-solid border-[#E3E3E3] rounded-lg cursor-pointer"
+                            (click)="setEditUser(user)">
+                                <i class="p-0 icon-editar"></i>
+                            </a>
+                            <a class="flex items-center justify-center bg-[#F9F9F9] w-8 h-8 mx-3 border-[1.5px] border-solid border-[#E3E3E3] rounded-lg cursor-pointer"
+                            (click)="blockUser(user)">
+                                <i *ngIf="user.isBloqueado; else elseBlock" class="p-0 icon-desactivado text-[#D9534F]"></i>
+                                <ng-template #elseBlock><i class="p-0 icon-activado text-[#3CA16B]"></i></ng-template>
+                            </a>
+                            <a class="flex items-center justify-center text-[#D9534F] bg-[#F9F9F9] w-8 h-8 border-[1.5px] border-solid border-[#E3E3E3] rounded-lg cursor-pointer"
+                            (click)="deleteUser(user)">
+                                <i class="p-0 icon-apagar font-medium"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <ng-template #elseBlockProcess>
+                <div class="div-linha-loading"></div>
+                <div class="div-linha-loading"></div>
+                <div class="div-linha-loading"></div>
+                <div class="div-linha-loading"></div>
+            </ng-template>
+
+        </table>
+
+        <ng-template #elseBlockTable>
+            <div class="flex justify-center items-center pt-8 border-solid border-t-[1.5px] border-[#EFEFEF]">
+                <app-content-message></app-content-message>
+            </div>
+        </ng-template>
+
+        <div class="pagination px-5 py-5">
+          <app-pagination
+            *ngIf="!(isLoading$ | async) && !(isEmpty$ | async)"
+            [paginationData]="paginationData"
+            (pageNumberEvent)="goToPageNumber($event)" >
+          </app-pagination>
+        </div>
+    </div>
+</div>
+
+<app-modal-main *ngIf="showCreateUserModal" [title]="'Adicionar Utilizador'" (close)="closeModal()">
+    <app-create-user></app-create-user>
+</app-modal-main>
+
+<app-modal-main *ngIf="showEditUserModal" [title]="'Editar Utilizador'" (close)="closeModal()">
+  <app-edit-user [currentUser]="currentUser"></app-edit-user>
+</app-modal-main>
+
+<app-modal-main *ngIf="showDeleteUserModal" [title]="'Remover Utilizador'" (close)="closeModal()">
+  <app-delete-user [currentUser]="currentUser"></app-delete-user>
+</app-modal-main>
+
+<app-modal-main *ngIf="showDesactiveUserModal" [title]="isCurrentBloqueado ? 'Activar Utilizador' : 'Desactivar Utilizador'" (close)="closeModal()">
+  <app-desactive-user [currentUser]="currentUser"></app-desactive-user>
+</app-modal-main>

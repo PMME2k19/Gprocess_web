@@ -1,0 +1,150 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?wruil4');
+  src:  url('fonts/icomoon.eot?wruil4#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?wruil4') format('truetype'),
+    url('fonts/icomoon.woff?wruil4') format('woff'),
+    url('fonts/icomoon.svg?wruil4#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-reciclagem:before {
+  content: "\e924";
+}
+.icon-order:before {
+  content: "\e921";
+}
+.icon-download:before {
+  content: "\e922";
+}
+.icon-plus:before {
+  content: "\e923";
+}
+.icon-close:before {
+  content: "\e920";
+}
+.icon-processos-analise:before {
+  content: "\e91c";
+  color: #f90;
+}
+.icon-processos-arquivados:before {
+  content: "\e91d";
+}
+.icon-processos-despachados:before {
+  content: "\e91e";
+  color: #3ca16b;
+}
+.icon-processos-registados:before {
+  content: "\e91f";
+  color: #1f64bc;
+}
+.icon-editar:before {
+  content: "\e915";
+}
+.icon-apagar:before {
+  content: "\e916";
+}
+.icon-desactivado:before {
+  content: "\e917";
+}
+.icon-add-user:before {
+  content: "\e918";
+}
+.icon-activado:before {
+  content: "\e919";
+}
+.icon-extrair-relatorio:before {
+  content: "\e912";
+}
+.icon-pesquisa:before {
+  content: "\e913";
+}
+.icon-calendario:before {
+  content: "\e914";
+}
+.icon-seta-up:before {
+  content: "\e90b";
+}
+.icon-relatorios:before {
+  content: "\e90c";
+}
+.icon-listagem:before {
+  content: "\e90d";
+}
+.icon-gerir-utilizador:before {
+  content: "\e90e";
+}
+.icon-definicoes:before {
+  content: "\e90f";
+}
+.icon-cadastrar:before {
+  content: "\e910";
+}
+.icon-hashtag:before {
+  content: "\e911";
+}
+.icon-seta-down:before {
+  content: "\e901";
+}
+.icon-seta-right:before {
+  content: "\e91a";
+}
+.icon-seta-left:before {
+  content: "\e91b";
+}
+.icon-notificacoes-active .path1:before {
+  content: "\e902";
+  color: rgb(46, 51, 97);
+}
+.icon-notificacoes-active .path2:before {
+  content: "\e903";
+  margin-left: -0.9873046875em;
+  color: rgb(46, 51, 97);
+}
+.icon-notificacoes-active .path3:before {
+  content: "\e904";
+  margin-left: -0.9873046875em;
+  color: rgb(46, 51, 97);
+}
+.icon-notificacoes-active .path4:before {
+  content: "\e905";
+  margin-left: -0.9873046875em;
+  color: rgb(255, 153, 0);
+}
+.icon-notificacoes-active .path5:before {
+  content: "\e906";
+  margin-left: -0.9873046875em;
+  color: rgb(255, 255, 255);
+}
+.icon-password-hide:before {
+  content: "\e907";
+}
+.icon-password-show:before {
+  content: "\e908";
+}
+.icon-hide-menu:before {
+  content: "\e909";
+}
+.icon-show-menu:before {
+  content: "\e90a";
+}
+.icon-notificacoes:before {
+  content: "\e900";
+}

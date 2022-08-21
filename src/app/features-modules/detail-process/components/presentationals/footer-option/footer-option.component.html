@@ -1,0 +1,80 @@
+<div class="footer-action w-full h-[3.9rem] px-7 flex items-center font-medium text-accent text-[0.94rem] uppercase bg-[#FDFDFD] border-t border-solid border-gray-200 fixed bottom-0">
+  <a *ngIf="estadoActual == processStateEnum.Criado" class="cursor-pointer"
+  (click)="showSolicitarDespacho = true">
+    Solicitar Despacho
+  </a>
+
+  <a *ngIf="( estadoActual == processStateEnum.SolicitadoDespacho ) && userProfileLevel.hasPermission()" class="cursor-pointer"
+  (click)="showDarDespacho = true">
+    Dar Despacho
+  </a>
+ 
+  <a *ngIf="( estadoActual == processStateEnum.DespachadoTratamentoInterno || estadoActual == processStateEnum.DespachadoTratamentoExterno || estadoActual == processStateEnum.DespachadoTratamentoInternoExterno ) && IsTratamentoColcuidoUltimoDespacho" class="cursor-pointer"
+  (click)="showEnviarAnalise = true">
+    Enviar para Análise
+  </a>
+
+  <a *ngIf="estadoActual == processStateEnum.DespachadoSemTratamento && !IsTratamentoColcuidoUltimoDespacho" class="cursor-pointer"
+  (click)="showDarTratamento = true">
+    Dar Tratamento
+  </a>
+
+  <a *ngIf="estadoActual == processStateEnum.EmAnalise" class="cursor-pointer"
+  (click)="showArquivarProcesso = true">
+    Arquivar Processo
+  </a>
+
+  <a *ngIf="estadoActual == processStateEnum.EmAnalise" class="cursor-pointer"
+  (click)="showSolicitarDespacho = true">
+    Novo Despacho
+  </a>
+
+  <a *ngIf="estadoActual == processStateEnum.Arquivado" class="cursor-pointer"
+  (click)="showSolicitarDespacho = true">
+    Reabrir processo
+  </a>
+
+  <a class="cursor-pointer" (click)="showMarcarReuniao = true">
+    Marcar Reunião
+  </a>
+
+  <a class="cursor-pointer" (click)="showDeixarObservacao = true">
+    Deixar observação
+  </a>
+
+  <a class="cursor-pointer" (click)="showAddDocumento = true">
+    Adicionar Arquivo
+  </a>
+</div>
+
+<app-modal-main *ngIf="showSolicitarDespacho" title="Solicitar Despacho" (close)="closeModal()">
+  <app-solicitar-despacho [processoId]="processoId"></app-solicitar-despacho>
+</app-modal-main>
+
+<app-modal-main *ngIf="showDarDespacho" title="Despachar" (close)="closeModal()">
+  <app-dar-despacho [processoId]="processoId"></app-dar-despacho>
+</app-modal-main>
+
+<app-modal-main *ngIf="showEnviarAnalise" title="Enviar para Análise" (close)="closeModal()">
+  <app-enviar-analise [processoId]="processoId"></app-enviar-analise>
+</app-modal-main>
+
+<app-modal-main *ngIf="showDarTratamento" title="Dar tratamento" (close)="closeModal()">
+  <app-dar-tratamento [processoId]="processoId"></app-dar-tratamento>
+</app-modal-main>
+
+<app-modal-main *ngIf="showArquivarProcesso" title="Arquivar Processo" (close)="closeModal()">
+  <app-arquivar-processo [processoId]="processoId"></app-arquivar-processo>
+</app-modal-main>
+
+<app-modal-main *ngIf="showDeixarObservacao" title="Deixar Observação" (close)="closeModal()">
+  <app-deixar-observacao [processoId]="processoId"></app-deixar-observacao>
+</app-modal-main>
+
+<app-modal-main *ngIf="showMarcarReuniao" title="Adicionar Reunião" (close)="closeModal()">
+  <app-marcar-reuniao [processoId]="processoId"></app-marcar-reuniao>
+</app-modal-main>
+
+<app-modal-main *ngIf="showAddDocumento" title="Adicionar Documento" (close)="closeModal()">
+  <app-add-documento [processoId]="processoId"></app-add-documento>
+</app-modal-main>

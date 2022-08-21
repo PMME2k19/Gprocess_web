@@ -1,0 +1,45 @@
+<form class="w-96" [formGroup]="reuniao" (ngSubmit)="marcarReuniao()">
+  <div class="modal-content w-full grid grid-cols-1 gap-7">
+      <div>
+          <label for="data-reuniao" class="block pb-2 text-sm font-medium">Data da Reunião</label>
+          <input id="data-reuniao" [min]="actualDate | date:'yyyy-MM-dd'" formControlName="dataReuniao" class="block w-full pl-5 pr-5 bg-gray-100 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm" type="date">
+      </div>
+      <div>
+          <label for="descricao" class="block pb-2 text-sm font-medium">Descrição da Reunião</label>
+          <textarea id="descricao" placeholder="Digite uma descrição sobre a reunião" formControlName="descricao" class="block w-full min-h-[8rem] px-5 py-3 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm"></textarea>
+      </div>
+      <div>
+        <label for="participantes" class="block pb-2 text-sm font-medium">Adicionar Participantes</label>
+
+        <div class="w-full bg-[#F4F4F4] border border-solid border-[#E3E3E3] rounded-md">
+          <div class="flex flex-col">
+            <div *ngFor="let item of listaParticipantes; let i = index" class="flex items-center justify-between py-2 pl-2 pr-[14px] border-b border-solid border-[#E3E3E3]">
+              <span class="text-sm">{{item}}</span>
+              <i class="icon-apagar p-0 text-[#D9534F] cursor-pointer" (click)="removerParticipante(i)"></i>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-2">
+            <input type="text" placeholder="Digite o nome - instituição/função" [formControl]="textoParticipante" class="w-[87%] bg-transparent text-sm outline-none">
+
+            <a [class.disabled]="textoParticipante.invalid" class="flex items-center justify-center w-[26px] h-[26px] text-sm bg-[#F9F9F9] border border-solid border-[#E3E3E3] rounded-lg cursor-pointer"
+            (click)="addParticipante()">
+              <i class="icon-plus p-0"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+  </div>
+  <div class="modal-footer">
+      <input type="button" class="secundary-button min-w-[7.5rem]" style="height: 2.5rem;"
+      value="Limpar" (click)="limparCampos()">
+
+      <button type="submit" [disabled]="loading || reuniao.invalid || listaParticipantes.length == 0" class="primary-button flex items-center justify-center min-w-[7.5rem]" style="height: 2.5rem;">
+          {{loading? 'Adicionando...': 'Adicionar'}}
+
+          <svg *ngIf="loading" xmlns="http://www.w3.org/2000/svg" class="animate-spin h-5 w-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+      </button>
+  </div>
+</form>

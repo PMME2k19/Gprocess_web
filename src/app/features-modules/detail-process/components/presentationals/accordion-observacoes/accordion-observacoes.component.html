@@ -1,0 +1,24 @@
+<div class="card min-h-min">
+  <ng-container *ngIf="observacoes.length">
+      <table class="border-t-0">
+          <thead>
+              <th>Observações</th>
+              <th>Data</th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of observacoes">
+                  <td>{{item.conteudo}}</td>
+                  <td>{{item.dataObservacao | dateCreatePipe }}</td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="pagination px-5 py-5">
+        <app-pagination
+          [paginationData]="paginationData"
+          (pageNumberEvent)="goToPageNumber($event)" >
+        </app-pagination>
+      </div>
+  </ng-container>
+
+  <app-content-message *ngIf="!(observacoes.length)" [option]="1" class="py-12 px-5"></app-content-message>
+</div>

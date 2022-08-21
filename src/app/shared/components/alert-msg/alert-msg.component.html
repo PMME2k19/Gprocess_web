@@ -1,0 +1,30 @@
+<div [style.display]="alertMsgService.displayAlert" 
+[style.backgroundColor]="alertMsgService.alertBgColor" 
+[style.color]='alertMsgService.alertTextColor'
+class="msg-container rounded-md z-50" style="position: fixed; right: 0; bottom: 0; width: 23rem; margin: 20px; padding: 15px; display: flex; flex-direction: column; justify-content: flex-start;">
+
+<span class="msg pl-2 text-sm" style="width: 100%; display: inline-block; color: #000;">{{alertMsgService.alertMsg}}</span>
+
+</div>
+
+<!--<div [style.display]="alertMsgService.displayAlert" 
+[style.backgroundColor]="alertMsgService.alertBgColor" 
+[style.color]='alertMsgService.alertTextColor'
+style="width: 30rem;"
+class="msg-container rounded-xl z-30" style="position: fixed; right: 0; bottom: 0; width: 26rem; margin: 20px; padding: 15px; display: flex; flex-direction: column; justify-content: flex-start;">
+
+<span class="msg-icones mb-2" style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">     
+<svg *ngIf="alertMsgService.resStatusCode == 200; else ElseBlock" xmlns="http://www.w3.org/2000/svg" [attr.stroke]="alertMsgService.alertTextColor" class="h-5 w-5 ml-2 mt-1" fill="none" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+</svg>
+<ng-template #ElseBlock>
+<svg class="h-5 w-5 ml-2 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" [attr.stroke]="alertMsgService.alertTextColor" aria-hidden="true">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+</svg>
+</ng-template>
+<span class="ml-2 mt-1 font-bold">Atenção</span>
+</span>
+
+<span class="msg pl-2" style="width: 100%; display: inline-block;">{{alertMsgService.alertMsg}}</span>
+
+</div>-->

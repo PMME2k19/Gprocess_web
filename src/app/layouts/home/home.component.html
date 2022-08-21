@@ -1,0 +1,141 @@
+<main class="" [style.grid-template-columns]="gridColumnMain">
+
+    <nav class="h-screen relative" [style.left]="leftNav">
+
+        <div class="flex mt-4 mb-1">
+            <img [routerLink]="['/', 'processos']" src="../../../assets/logos/logo-menu.svg" alt="Logo-Menu" class="ml-8 w-28 cursor-pointer"/>
+        </div>
+
+        <span class="separator"></span>
+
+        <ul>
+
+            <li>
+                <div class="flex justify-start items-center ml-8 mt-2 mb-2">
+                    <i class="icon-hashtag"></i>
+                    <span class="title-section-menu">VISUALIZAÇÃO</span>
+                </div>
+
+                <div [routerLink]="['/', 'processos']" routerLinkActive="selected" class="flex justify-start items-center cursor-pointer selectedItem w-56">
+                    <i class="icon-listagem ml-9"></i>
+                    <a class="title-itens-menu">Listagem</a>
+                </div>
+
+                <div [routerLink]="['/', 'relatorio']" routerLinkActive="selected" class="flex justify-start items-center mt-2 cursor-pointer selectedItem w-56">
+                    <i class="icon-relatorios ml-9"></i>
+                    <a class="title-itens-menu">Relatório</a>
+                </div>
+
+                <span class="separator"></span>
+            </li>
+            <li>
+                <div class="flex justify-start items-center ml-8 mt-2 mb-2">
+                    <i class="icon-hashtag"></i>
+                    <span class="title-section-menu">CADASTROS</span>
+                </div>
+
+                <div [routerLink]="['/', 'registo-de-documento']" routerLinkActive="selected" class="flex justify-start items-center cursor-pointer selectedItem w-60">
+                    <i class="icon-cadastrar text-sm ml-9"></i>
+                    <a class="title-itens-menu">Cadastrar Documento</a>
+                </div>
+
+                <span class="separator"></span>
+            </li>
+            <li>
+                <div class="flex justify-start items-center ml-8 mt-2 mb-2">
+                    <i class="icon-hashtag"></i>
+                    <span class="title-section-menu">GERENCIAR</span>
+                </div>
+
+                <div [routerLink]="['/', 'utilizadores']" routerLinkActive="selected" class="flex justify-start items-center cursor-pointer selectedItem w-56">
+                    <i class="icon-gerir-utilizador ml-9"></i>
+                    <a class="title-itens-menu">Gerir Utilizador</a>
+                </div>
+
+                <span class="separator"></span>
+            </li>
+            <li>
+                <div title="Esta funcionalidade não está disponível no momento!" class="flex justify-start items-center mt-2 cursor-pointer selectedItem w-56" (click)="selectSetting()">
+                    <i class="icon-definicoes ml-9"></i>
+                    <!--<a [routerLink]="['/', 'definicoes']" class="title-itens-menu">Definições</a>-->
+                    <a class="title-itens-menu">Definições</a>
+                </div>
+            </li>
+
+            <span class="separator"></span>
+        </ul>
+
+    </nav>
+
+    <section class="">
+
+        <header class="w-full relative flex justify-between items-center z-50">
+            <div class="flex items-center ml-7 justify-start cursor-pointer" style="width: 10%;" (click)='toggleMenu()' >
+                <i [ngClass]="leftNav != '0' ? 'icon-show-menu' : 'icon-hide-menu'" class="text-accent"></i>
+            </div>
+
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="relative flex justify-around items-center text-left" style="width: 20rem;">
+
+                <div title="Esta funcionalidade não está disponível no momento!" class="flex cursor-pointer notifications" (click)="toggleNotifications()">
+                    <img src="../../../assets/icones/header/icon-notificacoes.svg" class="w-6 pt-1 notifications" alt="Notificações" />
+                    <span *ngIf="totalNotifications > 0" class="w-2 h-2 ml-[15px] mt-1 rounded-[50%] absolute bg-[#FF9900] outline outline-[0.15rem] outline-white"></span>
+                </div>
+
+                <span class="text-2xl mt-1" style="color: rgb(227, 227, 227);"> | </span>
+
+                <div (click)='toggleUserOptions()' class="users w-56 mr-2 cursor-pointer">
+                    <div class="flex justify-start items-center text-DDD cursor-pointer">
+                        <div class="flex items-center justify-start" >
+                            <img src="../../../assets/imgs/user-img.svg" class="w-8 h-8 mr-3" alt="Foto de Perfil" style="border-radius: 1rem;"/>
+                        </div>
+                        <div class="flex flex-col items-start justify-start h-8 mr-2" >
+                            <span [title]="userNameApp" class="truncate font-bold" style="color: #00395A; font-size: 13px;"> {{userNameApp}} </span>
+                            <span [title]="userProfileApp" class="truncate text-xs" style="color: rgb(0, 57, 90);"> {{userProfileApp}} </span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div [@toggleHeight]="displayUserOptions ? 'show' : 'hide'" (clickOutside)="closeUserOptions()" exclude=".users" class="absolute flex flex-col w-48 text-sm top-14 right-16 bg-white border-[1.5px] border-[#efefef] border-solid rounded-md z-50 shadow-[0_3px_26px_rgba(0,0,0,0.10)]">
+                  <a class="border-b px-3 py-2 cursor-pointer">Minha Conta</a>
+                  <a class="font-medium px-3 py-2 cursor-pointer" (click)="logOut()">Terminar Sessão</a>
+                </div>
+
+                <div [@toggleHeight]="displaynotifications ? 'show' : 'hide'" (clickOutside)="closeNotifications()" exclude=".notifications" class="absolute flex flex-col w-[312px] top-14 right-28 bg-white border-[1.5px] border-[#efefef] border-solid rounded-md z-50 shadow-[0_3px_26px_rgba(0,0,0,0.10)]">
+                  <div class="header flex items-center justify-between font-medium p-3">
+                    <span class="text-sm">Notificações</span>
+                    <span class="text-[0.73rem] text-[#3C763D] bg-[#E2EED8] rounded-md px-2 py-[2px]">{{totalNotifications}} Nova(s)</span>
+                  </div>
+
+                  <div class="main flex flex-col bg-[#FCFCFC] border-y border-solid border-[#E6E7EC]">
+                    <app-content-message [option]="contentMessageEnum.NOTIFICATION" [smallSize]="true"></app-content-message>
+                  </div>
+
+                  <div class="footer flex justify-center text-[0.8rem] p-[0.7rem] cursor-pointer" routerLink="/notifications">
+                    <a>Ver todas as notificações</a>
+                  </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content items-start w-full overflow-y-scroll" style="height: calc(100vh - 110px);">
+            <router-outlet></router-outlet>
+        </div>
+
+        <footer class="pt-4 pb-4 flex justify-between items-center font-medium" style="background-color: #EAEAEA;">
+            <h5 class="ml-10 mr-auto flex justify-start items-center" style="width: 70%;">
+                <img src="../assets/logos/mappss_logo.png" class="h-3 mr-5" alt="Logo - Maptess" style="width: 6.5rem;"/>
+                <span class="text-xs">&copy; {{ano}} Instituto Nacional de Segurança Social - República de Angola   </span>
+            </h5>
+            <div class="flex justify-between items-center mr-6">
+                <span class="mr-2 text-xs"> Powered by </span>
+                <img src="../assets/logos/tsco.svg" class="w-10 h-4 mr-3" alt="Logo - Maptess" />
+            </div>
+        </footer>
+
+    </section>
+
+</main>

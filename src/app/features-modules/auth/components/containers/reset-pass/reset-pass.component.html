@@ -1,0 +1,56 @@
+<div class="h-screen float-left w-1/2 bg-no-repeat bg-cover" style="background-image: url(../../../../../assets/imgs/edificio_3.jpg)"></div>
+
+<div class="float-left w-1/2 h-screen flex flex-col justify-center items-center space-y-8 sm:px-6 lg:px-8 relative">
+    
+    <div [routerLink]="['/autenticacao/login']" class="font-semibold w-48 flex justify-start items-center absolute top-10 left-10 text-sm cursor-pointer">
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="margin-bottom: 1px;" fill="none" viewBox="0 0 24 24" stroke="#2E3361" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+    
+        <a style="color: #2E3361;" class="text-base">Voltar para o login</a>
+    </div>
+
+    <img src="../../../../../assets/logos/logo.svg" class="w-2/6 img-logo" alt="INSS - Instituto Nacional de Segurança Social." />
+
+    <form [formGroup]="resetPassForm" class="w-3/6 h-1/2 space-y-6 flex flex-col justify-around items-stretch">
+      
+        <div class="h-52" style="margin-top: -50px;">
+            <h2 class="text-center mb-2 text-lg text-gray-600 font-bold">Recuperação de Palavra-Passe</h2>
+
+            <p class="text-center pl-14 pr-14 mb-9 text-gray-600 text-base" style="margin-top: -2px;">Para recuperar a sua palavra-passe digite o seu email</p>
+
+            <div class="">
+                <label for="email-address" class="sr-only block text-sm font-medium">Email</label>
+                <div class="mt-1 relative rounded-md shadow-sm div-username">
+                <input autocomplete="off" formControlName="email" id="email" [disabled]="disabled" name="email" type="text" (keydown.enter)="resetPass()" class="block w-full pl-5 pr-12 bg-gray-100 px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm" placeholder="Email" style="height: 3.5rem;">
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+          <button type="button" (click)='resetPass()' [style.backgroundColor]="bottonBgColor" [disabled]="disabled" class="rounded-md text-color-white-important group relative w-full flex justify-center py-3 px-3 border border-transparent font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent" style="height: 3.5rem;">
+            <span class="absolute inset-y-0 flex items-center">
+                {{textBottonReset}}
+            </span>
+            <span class="absolute right-0 inset-y-0 flex items-center pr-3">
+            
+                <svg *ngIf="!processandoReset; else elseBlock" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="#FFF" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+
+                <ng-template #elseBlock>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </ng-template>
+
+              </span>
+          </button>
+        </div>
+
+    </form>
+    
+</div>
+
+<app-alert-msg></app-alert-msg>

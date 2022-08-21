@@ -1,0 +1,4 @@
+<div [class.disabled]="disabled" class="group text-gray-900 grid grid-cols-3 w-full pl-5 pr-[50px] py-2 bg-gray-100 border border-gray-300 rounded-lg" tabindex="1">
+    <input [class]="(isSmallSize? 'text-[0.8rem]' : 'text-sm') + ' col-span-2 bg-gray-100 outline-none group-focus:outline-none group-focus:ring-indigo-200 group-focus:border-indigo-200'" type="email" placeholder="{{placeHolder}}" [(ngModel)]="messageValue" (keyup)="onKeyUp($event)">
+    <span class="text-[0.75rem] font-medium text-right">{{sufix}}</span>
+</div>

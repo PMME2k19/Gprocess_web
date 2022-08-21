@@ -1,0 +1,103 @@
+.resume-box{
+    background: #fff;
+    border: 1px solid #e6e7ec;
+    filter: drop-shadow(0px 3px 26px rgba(0, 0, 0, 0.02));
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(210px + 5%);
+}
+
+.resume-box:not(.resume-box:first-child){
+    margin-left: 20px;
+}
+
+.div-linha-loading{
+    width: 665%;
+}
+
+.div-type .div-linha-loading{
+    width: 8rem;
+    height: 2.35rem;
+    margin: 0;
+}
+
+.div-quadrado-loading{
+    width: calc(210px + 5%);
+    height: 120px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #d9e5f4;
+}
+
+.criado{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: #1f64bc;    
+    background: #d9e5f4;
+    border-radius: 10px;
+}
+
+.despacho-solicitado{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: #3ca16b;    
+    background: #deefe6;
+    border-radius: 10px;
+}
+
+.despachado{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: #3ca16b;    
+    background: #deefe6;
+    border-radius: 10px;
+}
+
+.em-analise{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: #f90;    
+    background: #ffeed4;
+    border-radius: 10px;
+}
+
+.arquivado{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: #2c2c2c;
+    background: #dbdbdb;
+    border-radius: 10px;
+}
+
+.default{
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    color: rgb(255, 0, 0);    
+    background: #fbf7f1;
+    border-radius: 10px;
+}
+
+@media only screen and (min-width: 1536px)  {
+
+    .resume-box, .div-quadrado-loading{
+        width: calc(210px + 9%);
+        height: 130px;
+    }
+
+    .card div div{
+        margin-right: 1.25rem;
+    }
+
+}

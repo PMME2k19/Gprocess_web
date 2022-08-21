@@ -1,0 +1,22 @@
+<div class="card min-h-min">
+  <table class="border-t-0">
+      <thead>
+          <th>Estado do processo</th>
+          <th>Observações</th>
+          <th>Data</th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of estados">
+              <td>{{ item.estadoDescription }}</td>
+              <td [title]="item.observacao">{{ item.observacao | truncate: 46 }}</td>
+              <td>{{ item.dataTransicao | dateCreatePipe }}</td>
+          </tr>
+      </tbody>
+  </table>
+  <div class="pagination px-5 py-5">
+    <app-pagination
+      [paginationData]="paginationData"
+      (pageNumberEvent)="goToPageNumber($event)" >
+    </app-pagination>
+  </div>
+</div>

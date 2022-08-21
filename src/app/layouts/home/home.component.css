@@ -1,0 +1,61 @@
+.selected{
+  background-color: #b8b9c4; 
+  border-top-left-radius: 0.5rem; 
+  border-top-right-radius: 0.5rem; 
+  color: #2e3361;
+}
+
+main{
+  background-color: #FCFCFC;
+  display: grid;
+  font-family: Poppins;
+}
+
+  nav{
+    background-color: #2E3361;
+    color: #FFF;
+    line-height: 23px;
+    text-align: left;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+  }
+
+  header{
+    height: 62px;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    filter: drop-shadow(0px 3px 40px rgba(0, 0, 0, 0.03));    
+  }
+
+  .icon-hashtag,
+  .title-section-menu{
+    color: #B8B9C4;
+    font-size: 10px;
+  }
+
+  .title-itens-menu{
+    font-size: 14px;
+  }
+
+  .itens-processos{
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .separator{
+    display: inline-block;
+    width: 262px;
+    height: 1px;
+    background-color: #fff;
+    border: 1px solid #a2bccc;
+    opacity: 0.09;
+  }
+
+  .selectedItem{
+    border-radius: 0px 10px 10px 0px;
+    height: 35px;   
+    transition: background-color 0.4s;
+  }
+
+  section{
+  }

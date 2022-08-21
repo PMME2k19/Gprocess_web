@@ -1,0 +1,12 @@
+.div-linha-loading{
+  width: 97%;
+}
+
+.div-quadrado-loading{
+  width: calc(210px + 5%);
+  height: 40px;
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #d9e5f4;
+}

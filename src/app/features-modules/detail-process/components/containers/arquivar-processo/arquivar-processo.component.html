@@ -1,0 +1,20 @@
+<form class="w-96" [formGroup]="arquivar" (ngSubmit)="arquivarProcesso()">
+  <div class="modal-content w-full grid grid-cols-1 gap-7">
+      <div>
+          <label for="observacoes" class="block pb-2 text-sm font-medium">Observações</label>
+          <textarea id="observacoes" placeholder="Deixe alguma observação" formControlName="observacao" class="block w-full min-h-[8rem] px-5 py-3 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-200 focus:border-indigo-200 focus:z-10 sm:text-sm"></textarea>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <input type="button" class="secundary-button min-w-[7.5rem]" style="height: 2.5rem;"
+      value="Limpar" (click)="arquivar.reset()">
+
+      <button type="submit" [disabled]="loading || arquivar.invalid" class="primary-button flex items-center justify-center min-w-[7.5rem]" style="height: 2.5rem;">
+          {{loading? 'A arquivar...': 'Arquivar'}}
+
+          <svg *ngIf="loading" xmlns="http://www.w3.org/2000/svg" class="animate-spin h-5 w-5 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+      </button>
+  </div>
+</form>

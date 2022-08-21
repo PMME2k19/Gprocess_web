@@ -1,0 +1,16 @@
+<div [class.disabled]="disabled" [class]="'select text-gray-900 group ' + (isSmallSize? 'text-[0.8rem]': 'sm:text-sm')" tabindex="1" (blur)="hideDrop()">
+    <div class="flex items-center justify-between pl-5 pr-5 bg-gray-100 px-3 py-2 border border-gray-300 rounded-lg group-focus:outline-none group-focus:ring-indigo-200 group-focus:border-indigo-200 group-focus:z-10 header" (click)="showDrop()">
+        <span class="pr-5">{{placeHolder}}</span>
+        <img *ngIf="list.length > 1; else elseBlock" src="assets/icones/icon-seta-input.svg" alt="icon arrow">
+        <ng-template #elseBlock>
+            <svg xmlns="http://www.w3.org/2000/svg" (click)="reloadContent()" [ngClass]="isLoading ? 'animate-spin' : ''" class="h-5 w-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="#00395A">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+        </ng-template>
+    </div>
+    <div class="bg-gray-100 border border-gray-300 rounded-lg dropdown" [@toggleHeight]="isDropped && list.length > 1 ? 'show' : 'hide'">
+        <a class="flex items-center px-5 py-3" *ngFor="let item of list" [class.active]="item.checked" (click)="selecionar(item)">
+            <app-checkbox [class.disabled]="true" [messageValue]="item.checked" [titulo]="item.primeiroNome + ' ' + item.ultimoNome"></app-checkbox>
+        </a>
+    </div>
+</div>

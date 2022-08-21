@@ -1,0 +1,12 @@
+# docker-compose
+version: '3.9'
+services:
+  gprocess_web:
+    container_name: 'gprocess_web'
+    build:
+      context: .
+      args:
+        - CONFIG=qa
+    restart: always
+    ports:
+      - 8080:8080
